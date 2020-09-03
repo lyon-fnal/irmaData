@@ -50,7 +50,7 @@ irmaData::irmaData(fhicl::ParameterSet const & p)
 
 void irmaData::analyze(art::Event const & e)
 {
-  LOG_INFO("HI") << "opoo!";
+  LOG_INFO("HI") << "Bonjour!";
 }
 
 DEFINE_ART_MODULE(irmaData)
