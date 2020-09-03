@@ -1,14 +1,14 @@
-<span style="font-size:3em;">irmaData</span><br/>
+# irmaData
 Get data for IRMA analysis
 
-# Development
+## Development
 You can develop this repository several ways,
 
 - Local host with no dependencies: Use Microsoft Visual Studio Code (VSCode) and develop in a sandbox on your host (you need Docker and VSCode installed - that's it)
 - Local host with dependencies: Clone to your local host and, with VSCode, attach to a `devenv` container you've already installed and have up
 - Remote SL7 node: Clone to a Scientific Linux 7 machine with CVMFS (e.g. `gm2testgpvm01`)
 
-## Local host with no dependencies
+### Local host with no dependencies
 
 Use this choice if you want to try out this repository without installing it permanently and you don't have an installation of [devenv](https://github.com/lyon-fnal/devenv). The only things you need on your machine are Microsoft Visual Code (VSCode) and Docker.
 
@@ -24,7 +24,7 @@ To run, you'll need to open the integrated terminal and source the `setup.sh` sc
 
 Note that things will be slow the first time you configure, build, and run due to populating the CVMFS cache. 
 
-## Local host with dependencies
+### Local host with dependencies
 
 Start up the `devenv` container (see [devenv](https://github.com/lyon-fnal/devenv)). If you aren't going to use VSCode, then simply exec into it and clone this repository. Follow the instructions for *Remote SL7 node*. 
 
@@ -56,7 +56,7 @@ You will need to close your connection to the container and reattach for this to
 Once you've done that, you can use VSCode. Select the `gm2-sl7-v9-irmaData` kit, Configure, and Build. 
 
 
-## Remote SL7 node
+### Remote SL7 node
 
 Log into the SL7 node. It needs to have CVMFS installed. `cd` to your development area. 
 
