@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch gm2 -c irmaData.fcl",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/cvmfs/gm2.opensciencegrid.org/specials/sl7/prod/external/art/v2_10_03/slf7.x86_64.e15.prof/bin/gm2",
+            "args": ["-c", "irmaData.fcl"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/try",
+            "envFile": "${workspaceFolder}/try/project.env",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    // Add this part if you want to break on exceptions
+                    "description": "Enable all-exceptions",
+                    "text": "catch throw",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

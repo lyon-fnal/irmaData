@@ -1,0 +1,111 @@
+# docker-compose file for devenv based images and containers
+
+# Quick list of commands
+#  devenv-try: Long lived container with CVMFS
+#      docker-compose up -d devenv-try           # Start
+#      docker-compose logs -f devenv-try         # Check start of CVMFS
+#      docker-compose exec devenv-try /bin/bash  # Shell into the container
+#      docker-compose down                          # Stop
+
+#  devenv-vnc-try: Long lived container with CVMFS and running VNC
+#      docker-compose up -d devenv-vnc-try       # Start
+#      docker-compose logs -f devenv-vnc-try     # Check start of CVMFS
+#        Connect your VNC viewer to localhost:5901
+#      docker-compose down                          # Stop
+
+#  cvmfs_nfs_server: Long lived container that serves CVMFS to other containers
+#      docker-compose up -d cvmfs_nfs_server       # Start
+#      docker-compose logs -f cvmfs_nfs_server     # Check start of CVMFS
+#        You do not directly interact with this container/service
+#      docker-compose down                         # Stop
+
+#  devenv-client-try: Ephemeral containers that get CVMFS from cvmfs_nfs_server
+#      docker-compose run --rm devenv-client-try /bin/bash   # (or other command)
+#        If cvmfs_nfs_server is not running, it will be started. But because of its startup time, a command
+#                 in this container may fail. Wait for cvmfs_nfs_server to completely start.
+
+# -- Details:
+# Four services are defined
+#  Regular stand-alone containers - Long CVMFS start up time is incurred at run
+#    devenv-try     -  From devenv_cvmfs:sl7 image
+#    devenv-vnc-try -  From devenv_cvmfs_vnc:sl7 image
+
+#  CVMFS from a service. Running devenv-client-try has fast startup time
+#    cvmfs_nfs_server         - from devenv_cvmfs_nfsserver:sl7 image
+#    devenv-client-try     - from devenv_cvmfs_nfsclient:sl7 image
+#  A dependency is defined here so that starting devenv-client-try automatically starts cvmfs_nfs_server
+#    But because cvmfs_nfs_server takes a while to start, initial commands in devenv-client-try may fail.
+
+## We'll use YAML anchors and aliases to avoid repeating chunks of the settings configurations
+## See https://nickjanetakis.com/blog/docker-tip-82-using-yaml-anchors-and-x-properties-in-docker-compose and
+## and https://medium.com/@kinghuang/docker-compose-anchors-aliases-extensions-a1e4105d70bd for more info
+
+version: '3.7'
+
+# Definitions -----
+
+x-environment: &default-environment
+  environment:
+    - CVMFS_EXP=gm2
+    - DISPLAY=docker.for.mac.localhost:0
+
+x-env-file: &default-env-file
+#  env_file:
+#    - ./<ENV_NAME>.env
+
+# YAML does not merge sequences (sigh), hence the repetition below
+x-volumes1: &default-volumes-nocvmfs
+  volumes:
+    - workdir:/Users/lyon
+    - slash_root_try:/root
+#    - /private:/private               # Uncomment if running CLion on Mac
+#    - /Applications:/Applications:ro  # Uncomment if running CLion on Mac
+
+x-volumes2: &default-volumes-cvmfs
+  volumes:
+    - cvmfs_cache_try:/var/lib/cvmfs
+    - workdir:/Users/lyon
+    - slash_root_try:/root
+#    - /private:/private               # Uncomment if running CLion on Mac
+#    - /Applications:/Applications:ro  # Uncomment if running CLion on Mac
+
+x-worker: &default-worker
+  security_opt: # options needed for gdb debugging
+    - seccomp:unconfined
+    - apparmor:unconfined
+  cap_add:      # also needed for gdb
+    - SYS_PTRACE
+  privileged: true
+  ports:
+    - 127.0.0.1:19999:19999  # netdata
+    - 127.0.0.1:7777:7777   # gdb
+    - 127.0.0.1:5901:5901   # VNC - ok to have even if you aren't using it
+  command: /bin/bash
+  <<: *default-environment
+#  <<: *default-env-file
+
+
+services:
+
+  # devenv-try
+  devenv-try:
+    image: lyonfnal/devenv_cvmfs:sl7
+    hostname: devenv-try
+    <<: *default-worker
+    <<: *default-volumes-cvmfs
+
+volumes:
+  workdir:           # /Users/lyon
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
+      device: ":/System/Volumes/Data/Users/lyon"
+
+  slash_root_try:        # /root
+    external: true
+
+  cvmfs_cache_try:       # Cache for non-NFS served CVMFS
+    external: true
+
+

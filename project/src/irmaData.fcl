@@ -1,0 +1,11 @@
+# irmaData.fcl
+# bare bones fcl test
+
+physics: {
+  analyzers: {
+    a1: {
+      module_type: "irmaData"
+    }
+  }
+  p: [a1]
+}

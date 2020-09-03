@@ -1,0 +1,12 @@
+buildType:
+    default: prof
+    description: The build type
+    choices:
+      debug:
+        short: Debug
+        long: Build with debugging information
+        buildType: Debug
+      prof:
+        short: Prof
+        long: Optimized build with symbols (for profiling)
+        buildType: Prof

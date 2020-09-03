@@ -1,0 +1,13 @@
+{
+    "cmake.configureOnOpen": false,
+    "cmake.cmakePath": "/cvmfs/gm2.opensciencegrid.org/specials/sl7/prod/external/cmake/v3_10_1/Linux64bit+3.10-2.17/bin/cmake",
+    "cmake.sourceDirectory": "${workspaceFolder}/project",
+    "cmake.buildDirectory": "${workspaceFolder}/project/build",
+    "cmake.generator": "Ninja",
+    "cmake.configureSettings":{
+        "IS_IN_SOURCE:BOOL":"false",
+        "WORKING_DIR:STRING":"${workspaceFolder}/project/build",
+        "BUILD_DIRS:STRING":"no args"
+    },
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+}
