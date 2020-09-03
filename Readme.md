@@ -30,6 +30,7 @@ Start up the `devenv` container (see [devenv](https://github.com/lyon-fnal/deven
 
 If you want to use VSCode, then do the following...
 
+- Clone this repository to your local disk
 - Start VSCode
 - Bring up the command pallette and choose "Remote-Containers: Attach to running container" and choose the container
 - Bring up the command pallette and do "Remote-Containers: Open Named Container Configuration File"
@@ -48,7 +49,7 @@ If you want to use VSCode, then do the following...
     ]
 ```
 
-where you replace the paths to point to where you cloned this repository. 
+where you replace the paths to point to where you cloned this repository and change `USER` accordingly. 
 
 You will need to close your connection to the container and reattach for this to go into effect. 
 
