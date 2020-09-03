@@ -5,9 +5,8 @@
 	"forwardPorts": [19999],
 	"containerEnv": {
 		"CVMFS_EXP": "gm2",
-		"DISPLAY": "docker.for.mac.localhost:0"
-	},
-	"remoteEnv": {
+		"DISPLAY": "docker.for.mac.localhost:0",
+		"USER": "${localEnv:USER}",
 		"WORKSPACE_FOLDER": "${containerWorkspaceFolder}"
 	},
 	"runArgs": ["--privileged","--cap-add=SYS_PTRACE", "--security-opt","seccomp=unconfined"],
