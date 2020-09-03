@@ -1,17 +1,19 @@
 {
 	"name": "irmaData",
-	"dockerComposeFile": "docker-compose.yml",
-	"service": "devenv-try",
-	"workspaceFolder": "/Users/lyon/Development/gm2/irmaData",
-
-	"remoteEnv": {
-		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+	"image": "lyonfnal/devenv_cvmfs:sl7",
+	"overrideCommand": false,
+	"forwardPorts": [19999],
+	"containerEnv": {
+		"CVMFS_EXP": "gm2",
+		"DISPLAY": "docker.for.mac.localhost:0"
 	},
-	
+	"remoteEnv": {
+		"WORKSPACE_FOLDER": "${containerWorkspaceFolder}"
+	},
+	"runArgs": ["--privileged","--cap-add=SYS_PTRACE", "--security-opt","seccomp=unconfined"],
 	"settings": { 
 		"terminal.integrated.shell.linux": "/bin/bash"
 	},
-
 	"extensions": [
 		"ms-vscode.cpptools",
 		"twxs.cmake",
