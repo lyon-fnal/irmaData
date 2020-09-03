@@ -1,0 +1,79 @@
+process_name: slim
+
+source: {
+  module_type: RootInput
+  maxEvents: -1
+}
+
+services: {
+  TimeTracker: {
+    printSummary: true
+  }
+
+  message: {
+    debugModules: ["*"]
+    suppressInfo: []
+    destinations: {
+ LogToConsole : {
+     type      : "cout"
+     threshold : "INFO"
+   }
+   LogToFile : {
+     type : "file"
+     filename : "gm2Ratio_ana.log"
+     append : false
+     threshold : "INFO"
+   }
+    }
+  }//message
+
+  TFileService: {
+    fileName: "gm2Ratio_ana.root"
+  }
+} # end of services
+
+physics: {
+  filters: {}
+  analyzers: {
+    MuonCoincidence:{
+      module_type:  ratioeast
+      readModule: energyPartition
+      readInstance: partition
+      Emin: 1700
+      Ethre:500   
+      binWidth:149.19 //ns
+      gapT:0.020 //us
+      DeadT:0.00053 //us
+      DeadX:3.00//c.w.
+      //datasetName_reconEast:end
+      DeadY:3.00//c.w
+      //c1:7
+      //c2:7
+      //randSeed1:0
+      //randSeed2:0
+      //SelectEvents: ["offline:muonPathwithDQC"]
+      //SelectEvents: ["caloReco:muonPath"]		
+      //SelectEvents: ["caloReco:muonPathWithT0DQC"]			
+      SelectEvents: ["caloReco:muonPathWithDQC"]
+    }
+
+  }
+
+  outPath:       [ MuonCoincidence, outfile ]
+
+  end_paths:     [ outPath ]
+
+} # end of physics
+
+outputs: {
+  outfile: {
+    module_type   : RootOutput
+    fileName      : "ntupletest.root"
+    dataTier     : "ana"
+
+    outputCommands: [
+      "drop *_*_*_*"
+    ]
+  }
+} # end of outputs
+
