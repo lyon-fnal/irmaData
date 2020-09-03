@@ -29,14 +29,17 @@ foreach(lib_prod ${lib_prod_list})
   foreach(so ${so_list})
     string(REGEX REPLACE "^.*/lib([^/]*)\\.(so|dylib)$" "\\1" var ${so})
     set(${var} ${so})
+   # message("${var}")
   endforeach()
 endforeach()
 
+#message("----")
 # root special case!
 file(GLOB root_lib_list $ENV{ROOTSYS}/lib/*.so $ENV{ROOTSYS}/lib/*.dylib)
 foreach(root_so ${root_lib_list})
   string(REGEX REPLACE "^/.*lib(.*)\\.(so|dylib)$" "\\1" root_var ${root_so})
   set(root_${root_var} ${root_so})
+  #message("root_${root_var}")
 endforeach()
 
 # define the set of libraries needed to link a service or module
