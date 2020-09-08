@@ -2,11 +2,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch gm2 -c irmaData.fcl",
+            "name": "(gdb) Launch gm2 ratio_grid",
             "type": "cppdbg",
             "request": "launch",
             "program": "/cvmfs/gm2.opensciencegrid.org/specials/sl7/prod/external/art/v2_10_03/slf7.x86_64.e15.prof/bin/gm2",
-            "args": ["-c", "irmaData.fcl"],
+            "args": ["-c", "ratio_grid.fcl", "-n", "10", "/pnfs/GM2/daq/run2/offline/gm2_5111C/runs_25000/25024/gm2offline_final_31680117_25024.00365.root"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/try",
             "envFile": "${workspaceFolder}/try/project.env",

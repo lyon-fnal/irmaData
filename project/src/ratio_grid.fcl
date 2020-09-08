@@ -20,7 +20,7 @@ services: {
    }
    LogToFile : {
      type : "file"
-     filename : "gm2Ratio_ana.log"
+     filename : "james_ana.log"
      append : false
      threshold : "INFO"
    }
@@ -28,7 +28,7 @@ services: {
   }//message
 
   TFileService: {
-    fileName: "gm2Ratio_ana.root"
+    fileName: "james_ana.root"
   }
 } # end of services
 
@@ -36,9 +36,10 @@ physics: {
   filters: {}
   analyzers: {
     MuonCoincidence:{
-      module_type:  ratioeast
+      module_type:  james
       readModule: energyPartition
       readInstance: partition
+      debug: true
       Emin: 1700
       Ethre:500   
       binWidth:149.19 //ns
