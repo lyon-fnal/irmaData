@@ -10,4 +10,13 @@
         "BUILD_DIRS:STRING":"no args"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "clang-tidy.buildPath": "/Users/lyon/Development/gm2/irmaData/project/build",
+    "clang-tidy.compilerArgs": [
+
+        "-std=c++14"
+    ],
+    "clang-tidy.lintOnSave": false,
+    "clang-tidy.blacklist": [
+    
+    ],
 }
