@@ -4,7 +4,7 @@
 	"overrideCommand": false,
 	"forwardPorts": [19999],
 	"remoteEnv": {
-		"CVMFS_EXP": "gm2",
+		"CVMFS_EXP": "gm2.opensciencegrid.org",
 		"DISPLAY": "docker.for.mac.localhost:0",
 		"USER": "${localEnv:USER}",
 		"WORKSPACE_FOLDER": "${containerWorkspaceFolder}",
