@@ -1,10 +1,28 @@
 # irmaData.fcl
-# bare bones fcl test
+# Write out an HDF5 file with IRMA data
+# A good file is perhaps /pnfs/GM2/daq/run2/offline/gm2_5111C/runs_25000/25024/gm2offline_final_31680117_25024.00365.root
+
+process_name: writeHDF5ForIrma
+
+source :{
+  module_type: RootInput
+  maxEvents: -1
+}
+
+services: {
+  TimeTracker: {
+    printSummary: true
+  }
+}
 
 physics: {
   analyzers: {
     a1: {
       module_type: "irmaData"
+      readModule: energyPartition
+      readInstance: partition
+      fileName: "irma.h5"
+      SelectEvents: ["caloReco:muonPathWithDQC"]
     }
   }
   p: [a1]

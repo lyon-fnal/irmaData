@@ -10,7 +10,10 @@
 
 # "irmaData" lib linking
 add_library(irmaData_module SHARED irmaData_module.cc)
-target_link_libraries(irmaData_module ${module_lib_list})
+target_link_libraries(irmaData_module ${module_lib_list}
+                                      ${hep_hpc_hdf5}
+                                      ${hdf5}
+                                      )
 
 #message("${module_lib_list}")
 
