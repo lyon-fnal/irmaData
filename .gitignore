@@ -1,3 +1,4 @@
 project/build/*
 try
 project/products
+*.h5
