@@ -1,0 +1,136 @@
+{
+  "title": "James Histogram Maker",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "This tour shows how James Stapleton's Histogram Maker analyzer works. "
+    },
+    {
+      "file": "project/src/james_module.cc",
+      "line": 845,
+      "description": "The `analyze` method for the analyzer. The work starts here. ",
+      "title": "analyze method"
+    },
+    {
+      "file": "project/src/james_module.cc",
+      "line": 878,
+      "description": "Retreive the `CaloGlobalFitViewArtRecordCollection`. This will allow us to get to the clusters in the calorimeters. What is returned is a vector of objects, one for each calorimeter with clusters. ",
+      "title": "Get calo information"
+    },
+    {
+      "file": "project/src/james_module.cc",
+      "line": 891,
+      "description": "Loop over the calorimeters that have clusters",
+      "title": "Loop over calorimeters"
+    },
+    {
+      "file": "project/src/james_module.cc",
+      "line": 900,
+      "description": "We get a vector of clusters for this calorimeter. ",
+      "title": "Get vector of clusters"
+    },
+    {
+      "file": "project/src/james_module.cc",
+      "line": 903,
+      "description": "Loop over the clusters",
+      "title": "Loop over clusters"
+    },
+    {
+      "file": "project/src/james_module.cc",
+      "line": 909,
+      "description": "We take the cluster, which is a `gm2reconeast::GlobalFitArtRecord` and convert it to our `ClusterHit` object. Let's look at that...",
+      "title": "Convert to our Cluster type"
+    },
+    {
+      "file": "project/src/james_module.hh",
+      "line": 167,
+      "description": "Note the conversions. We convert tick to microseconds.",
+      "title": "Convert time"
+    },
+    {
+      "file": "project/src/james_module.hh",
+      "line": 171,
+      "description": "And apply an energy calibration. ",
+      "title": "Convert energy"
+    },
+    {
+      "file": "project/src/james_module.hh",
+      "line": 57,
+      "description": "Here's where the energy calibrations are set. Not sure where these numbers come from. ",
+      "title": "Energy calibration values"
+    },
+    {
+      "file": "project/src/james_module.hh",
+      "line": 161,
+      "description": "Also, note that here is where we assign the quarter randomly to this cluster. ",
+      "title": "Quartering the hits"
+    },
+    {
+      "file": "project/src/james_module.hh",
+      "line": 162,
+      "description": "And we shift the time for the ratio plot depending on the quarter. ",
+      "title": "Time shift for ratio plot"
+    },
+    {
+      "file": "project/src/james_module.hh",
+      "line": 163,
+      "description": "Time shift centered on the bin center +/- 1/2 bin width",
+      "title": "Random time shift"
+    },
+    {
+      "file": "project/src/james_module.cc",
+      "line": 915,
+      "description": "If this is a \"good\" hit, then we record it in the histograms. \n\nFor the time cut... the cluster time is the one that's converted to microseconds. The `tMin_` and `tMax_` are parameters for the module and the defaults are 18 and 700 microseconds respectively. The cuts have a margin as well (that's the fourth argument), so the cut is widened by the margin. The bin width is also a module parameter. With the defaults, the margin is 2.41 microseconds. \n\nFor the energy cut, the energy of the cluster (calibrated) must be greater than or equal to the minimum energy cut (which is set in the module parameters - the default is 1700 MeV.)",
+      "title": "Cut on time and energy"
+    },
+    {
+      "file": "project/src/james_module.cc",
+      "line": 917,
+      "description": "Fill the time histogram with the time of the hit adjusted by the random shift (+/- half a bin width centered on the bin). This is NOT the quartered adjusted time. ",
+      "title": "Fill all time histogram"
+    },
+    {
+      "file": "project/src/james_module.cc",
+      "line": 926,
+      "description": "Now we fill hisograms according to the quarter. And for the time we use the one adjusted according to the quarter.",
+      "title": "Fill time histogram according to quarter"
+    },
+    {
+      "file": "project/src/james_module.cc",
+      "line": 974,
+      "description": "This is saving the pointers to all hits that pass the time cuts, regardless of the energy. ",
+      "title": "Save list of hits (clusters) with good time"
+    },
+    {
+      "file": "project/src/james_module.cc",
+      "line": 981,
+      "description": "Loop over all the hits that pass the timing cuts. ",
+      "title": "Loop over good time hits"
+    },
+    {
+      "file": "project/src/james_module.cc",
+      "line": 987,
+      "description": "Check if this cluster and the next one make a shadow coincidence. With the default dead time parameter, this will succeed if the next hit is less than 1 ns later than the current hit and from the same island. ",
+      "title": "Check if shadow coincidence"
+    },
+    {
+      "file": "project/src/james_module.cc",
+      "line": 995,
+      "description": "Keep track of this coincidence (`aPileupHit` just keeps track of the hits in the shadow coincidence)",
+      "title": "Keep track of pileup hits"
+    },
+    {
+      "file": "project/src/james_module.cc",
+      "line": 1015,
+      "description": "We're making a pileup hit for the last hit. But we're only storing that one. Not sure why we're doing this. ",
+      "title": "Pileup for last hit?"
+    },
+    {
+      "file": "project/src/james_module.cc",
+      "line": 1032,
+      "description": "Loop over all of the pileup hits for histogramming. It looks quite complicated!",
+      "title": "Histogram pileup hits"
+    }
+  ],
+  "ref": "master"
+}
