@@ -25,14 +25,6 @@
 // HDF5 includes
 #include "hep_hpc/hdf5/make_ntuple.hpp"
 
-// Boost includes (for the file name)
-#include <boost/uuid/uuid.hpp>            // uuid class
-#include <boost/uuid/uuid_generators.hpp> // generators
-#include <boost/uuid/uuid_io.hpp>         // streaming
-
-#include <sstream>
-#include <iomanip>
-
 using hep_hpc::hdf5::Column;
 using hep_hpc::hdf5::make_scalar_column;
 
