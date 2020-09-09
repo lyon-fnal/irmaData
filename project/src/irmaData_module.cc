@@ -27,7 +27,18 @@
 
 using hep_hpc::hdf5::Column;
 using hep_hpc::hdf5::make_scalar_column;
+using hep_hpc::hdf5::PropertyList;
 
+const int chunkSize = 1024 * 1024 / sizeof(int);
+
+// A convience function to make columns in the Ntuple with the correct chunksize and compression
+template <typename T>
+inline
+hep_hpc::hdf5::Column<T, 1ull>
+make_scalar_column_with_my_params(std::string name) {
+  return make_scalar_column<T>(name, chunkSize, {PropertyList{H5P_DATASET_CREATE}(&H5Pset_shuffle)(&H5Pset_deflate,6u)} );
+}
+                                                
 class IrmaData;
 
 /**
@@ -82,15 +93,15 @@ IrmaData::IrmaData(fhicl::ParameterSet const &p)
       readInstance_(p.get<std::string>("readInstance", "partition")),
       h5File_(fileName_, H5F_ACC_TRUNC),
       clusterTuple_(hep_hpc::hdf5::make_ntuple({h5File_, "ReconEastClusters", 1000},
-                                               make_scalar_column<int>("run"),
-                                               make_scalar_column<int>("subrun"),
-                                               make_scalar_column<int>("event"),
-                                               make_scalar_column<int>("caloIndex"),
-                                               make_scalar_column<int>("islandIndex"),
-                                               make_scalar_column<float>("time"),
-                                               make_scalar_column<float>("energy"),
-                                               make_scalar_column<float>("x"),
-                                               make_scalar_column<float>("y")))
+                                               make_scalar_column_with_my_params<int>("run"),
+                                               make_scalar_column_with_my_params<int>("subrun"),
+                                               make_scalar_column_with_my_params<int>("event"),
+                                               make_scalar_column_with_my_params<int>("caloIndex"),
+                                               make_scalar_column_with_my_params<int>("islandIndex"),
+                                               make_scalar_column_with_my_params<float>("time"),
+                                               make_scalar_column_with_my_params<float>("energy"),
+                                               make_scalar_column_with_my_params<float>("x"),
+                                               make_scalar_column_with_my_params<float>("y")))
 {
 }
 
@@ -116,7 +127,6 @@ void IrmaData::analyze(art::Event const &e)
     // Loop over clusters
     for (auto &aClusterPtr : clustersThisCaloPtrVtr.clusters)
     {
-
       const auto &aCluster = aClusterPtr.get();
 
       // Fill the ntuple
