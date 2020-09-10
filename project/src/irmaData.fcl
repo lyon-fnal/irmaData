@@ -13,7 +13,24 @@ services: {
   TimeTracker: {
     printSummary: true
   }
-}
+
+  message: {
+    debugModules: ["*"]
+    suppressInfo: []
+    destinations: {
+      LogToConsole : {
+      type      : "cout"
+      threshold : "INFO"
+      }
+      LogToFile : {
+      type : "file"
+      filename : "irmaData.log"
+      append : false
+      threshold : "INFO"
+      }
+    }
+  } //message
+}  // services
 
 physics: {
   analyzers: {
@@ -21,7 +38,7 @@ physics: {
       module_type: "irmaData"
       readModule: energyPartition
       readInstance: partition
-      fileName: "irma.h5"
+      fileName: "irmaData.h5"
       SelectEvents: ["caloReco:muonPathWithDQC"]
     }
   }

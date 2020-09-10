@@ -19,4 +19,5 @@
     "clang-tidy.blacklist": [
     
     ],
+    "julia.environmentPath": "/Users/lyon/Development/gm2/irmaData/analysis",
 }

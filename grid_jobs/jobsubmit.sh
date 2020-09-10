@@ -1,0 +1,2 @@
+# Job submission script
+jobsub_submit -N 3 -G gm2 --resource-provides=usage_model=DEDICATED,OPPORTUNISTIC --cpu=1 --memory=1800MB --disk=3GB --expected-lifetime=10h --role=Analysis --tar_file_name dropbox://$PWD/irmaData.tgz --use-cvmfs-dropbox file:///gm2/app/users/lyon/sl7/testDB/runjobGrid.sh --dataset_definition=gm2pro_daq_offline_dqc_run2E --project_name=irmaData1
