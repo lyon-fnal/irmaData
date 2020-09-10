@@ -80,7 +80,7 @@
     {
       "file": "project/src/irmaData_module.cc",
       "line": 130,
-      "description": "Navigate through the Ptr to get the cluster object. ",
+      "description": "Navigate through the Ptr to get the cluster object. Note the use of dereference for the handle `*(aClusterPtr.get())`. That does the dereference once. If I didn't do that and below did `aCluster->time` and `aCluster->energy` etc, then each `->` would involve a dereference and that would take slightly more time. ",
       "title": "Resolve the cluster itself"
     },
     {

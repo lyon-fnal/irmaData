@@ -127,17 +127,17 @@ void IrmaData::analyze(art::Event const &e)
     // Loop over clusters
     for (auto &aClusterPtr : clustersThisCaloPtrVtr.clusters)
     {
-      const auto &aCluster = aClusterPtr.get();
+      const auto &aCluster = *(aClusterPtr.get());
 
       // Fill the ntuple
       clusterTuple_.insert(
           run, subrun, event,
-          aCluster->calorimeterIndex,
-          aCluster->islandIndex,
-          aCluster->time,
-          aCluster->energy,
-          aCluster->position.first,
-          aCluster->position.second);
+          aCluster.calorimeterIndex,
+          aCluster.islandIndex,
+          aCluster.time,
+          aCluster.energy,
+          aCluster.position.first,
+          aCluster.position.second);
     }
   }
 }
