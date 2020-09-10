@@ -1,0 +1,98 @@
+{
+  "title": "Make HDF5 File",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "This tour will show you how to make an HDF5 file from art data."
+    },
+    {
+      "file": "project/src/irmaData_module.cc",
+      "line": 2,
+      "description": "This is an analyzer module that will read in art data and write out to an HDF5 file.",
+      "title": "The analyzer"
+    },
+    {
+      "file": "project/src/irmaData_module.cc",
+      "line": 26,
+      "description": "This is the main include file you need to use the convenience classes and functions created by the art team.",
+      "title": "Main include file"
+    },
+    {
+      "file": "project/src/irmaData_module.cc",
+      "line": 30,
+      "description": "I tend not to use the `using` command often as I want to see where types come from. But for these it's especially convenient not to have to type in the whole namespace. ",
+      "title": "Long namespaces"
+    },
+    {
+      "file": "project/src/irmaData_module.cc",
+      "line": 74,
+      "description": "This is the HDF5 file object declaration as a member datum in our analyzer object. ",
+      "title": "Declaring the file"
+    },
+    {
+      "file": "project/src/irmaData_module.cc",
+      "line": 86,
+      "description": "See code above. We're going to store the data for HDF5 into a `Ntuple`. Since that's a templated object, we need to do this rather complicated declaration. It's important to have comments so you remember the ordering of the data. ",
+      "title": "Declaring the Ntuple"
+    },
+    {
+      "file": "project/src/irmaData_module.cc",
+      "line": 94,
+      "description": "Creating the HDF5 file (in the initializer list of the analyzer constructor). The `H5F_ACC_TRUNC` means to overwrite the file if it already exists. ",
+      "title": "Creating the file"
+    },
+    {
+      "file": "project/src/irmaData_module.cc",
+      "line": 104,
+      "description": "Above is where we create the Ntuple and define its structure. The `ReconEastClusters` is the name of the \"Group\" (like a directory) for the columns. Note that I have a special convenience function for defining each column. We'll look at that next. ",
+      "title": "Creating the Ntuple"
+    },
+    {
+      "file": "project/src/irmaData_module.cc",
+      "line": 40,
+      "description": "This very complicated looking function above calls `make_scalar_column` with a bunch of options. I have this convenience function to make this easier and type less. The options that are given are\n- `chunkSize`: HDF5 will write/read data in chunks. For efficiency, the chunk size should be large. Here, it is about 1 MB (see definition a few lines above).\n- The `PropertyList` specifies that two forms of compression should occur: deflate (gzip compression) and shuffle (look for many identical rows and compress more)\n",
+      "title": "Convenience function to make columns"
+    },
+    {
+      "file": "project/src/irmaData_module.cc",
+      "line": 32,
+      "description": "Here's the definition of `chunkSize`",
+      "title": "Chunk size definition"
+    },
+    {
+      "file": "project/src/irmaData_module.cc",
+      "line": 115,
+      "description": "Here is the start of the `analyze` function. This is called for every event. ",
+      "title": "Start of the analyzer"
+    },
+    {
+      "file": "project/src/irmaData_module.cc",
+      "line": 124,
+      "description": "We retrieved the calorimeter information and now we're going to loop over the calorimeters that have clusters. ",
+      "title": "Loop over calorimeters"
+    },
+    {
+      "file": "project/src/irmaData_module.cc",
+      "line": 128,
+      "description": "We have the clusters for this calorimeter, so loop over them (actually, we have a vector of art Ptr's to cluster objects).",
+      "title": "Loop over clusters"
+    },
+    {
+      "file": "project/src/irmaData_module.cc",
+      "line": 130,
+      "description": "Navigate through the Ptr to get the cluster object. ",
+      "title": "Resolve the cluster itself"
+    },
+    {
+      "file": "project/src/irmaData_module.cc",
+      "line": 141,
+      "description": "Above is where we insert the data into the HDF5 Ntuple. Note that we need to get the ordering correct!",
+      "title": "Fill the HDF5 Ntuple"
+    },
+    {
+      "title": "Examining structure of HDF5 file",
+      "description": "If you have an `irma.h5` file in the `try` directory, you can look at it with (click on the command line below)\n>> source setup.sh ; cd try ; h5ls-shared irma.h5/ReconEastClusters\n\nYou can get more information about a column with\n>> source setup.sh ; cd try ; h5ls-shared -v irma.h5/ReconEastClusters/islandIndex\n"
+    }
+  ],
+  "ref": "master"
+}
