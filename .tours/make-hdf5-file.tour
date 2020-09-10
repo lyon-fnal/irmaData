@@ -94,5 +94,6 @@
       "description": "If you have an `irma.h5` file in the `try` directory, you can look at it with (click on the command line below)\n>> source setup.sh ; cd try ; h5ls-shared irma.h5/ReconEastClusters\n\nYou can get more information about a column with\n>> source setup.sh ; cd try ; h5ls-shared -v irma.h5/ReconEastClusters/islandIndex\n"
     }
   ],
-  "ref": "master"
+  "ref": "master",
+  "isPrimary": true
 }
