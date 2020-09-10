@@ -3,3 +3,4 @@ try
 project/products
 *.h5
 *.log
+grid_jobs/tar
