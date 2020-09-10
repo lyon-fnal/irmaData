@@ -31,7 +31,7 @@ using hep_hpc::hdf5::PropertyList;
 
 const int chunkSize = 1024 * 1024 / sizeof(int);
 
-// A convience function to make columns in the Ntuple with the correct chunksize and compression
+// A convenience function to make columns in the Ntuple with the correct chunksize and compression
 template <typename T>
 inline
 hep_hpc::hdf5::Column<T, 1ull>
