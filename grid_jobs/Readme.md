@@ -13,6 +13,10 @@ tar cvzf ../irmaData.fcl lib/ fcl/
 cd ..
 ```
 
+## Preparing to run
+
+Be sure the output file is ready (it is set in `runGridJob.sh`).
+
 ## Checking on the jobs
 
 ```bash
