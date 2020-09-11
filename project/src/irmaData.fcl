@@ -19,14 +19,16 @@ services: {
     suppressInfo: []
     destinations: {
       LogToConsole : {
-      type      : "cout"
-      threshold : "INFO"
+        type      : "cout"
+        threshold : "INFO"
+        categories : { default : { limit : 100 } }
       }
       LogToFile : {
-      type : "file"
-      filename : "irmaData.log"
-      append : false
-      threshold : "INFO"
+        type : "file"
+        filename : "irmaData.log"
+        append : false
+        threshold : "INFO"
+        categories : { default : { limit : 100 } }
       }
     }
   } //message

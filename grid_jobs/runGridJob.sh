@@ -18,7 +18,7 @@ ls $D
 
 # Set up studio environment
 source /cvmfs/gm2.opensciencegrid.org/prod/g-2/setup
-export PRODUCTS=/cvmfs/gm2.opensciencegrid.org/specials/sl7/prod/g-2:/cvmfs/gm2.opensciencegrid.org/specials/sl7/prod/external:$PRODUCTS 
+export PRODUCTS=/cvmfs/gm2.opensciencegrid.org/specials/sl7/prod/g-2:/cvmfs/gm2.opensciencegrid.org/specials/sl7/prod/external:$PRODUCTS
 setup gm2 v9_52_00 -q prof
 setup cmake v3_17_1
 setup hep_hpc v0_13_01 -q e15
@@ -36,11 +36,11 @@ SAM_PROJECT_URL=$(ifdh findProject ${SAM_PROJECT_NAME} gm2 2>&1)
 
 # Establish the SAM process
 HOST=`/bin/hostname`
-SAM_PROCESS_ID=$(ifdh establishProcess ${SAM_PROJECT_URL} gm2 v9_52_00 $HOST lyon irmaData $JOBSUBJOBID 1 xroot 2>&1)
+SAM_PROCESS_ID=$(ifdh establishProcess ${SAM_PROJECT_URL} gm2 v9_52_00 $HOST lyon irmaData $JOBSUBJOBID 0 xroot 2>&1)
 # Format of above ... ifdh establishProcess url app version location user appfamily description filelimit schema
 
 # Run it!
-gm2 -c $D/fcl/irmaData.fcl --sam-web-url=${SAM_PROJECT_URL} --sam-process-id=${SAM_PROCESS_ID}
+gm2 -c $D/fcl/irmaData.fcl --sam-web-uri=${SAM_PROJECT_URL} --sam-process-id=${SAM_PROCESS_ID}
 
 # Copy the output back
 OUT=/pnfs/GM2/scratch/users/lyon/irmaData
