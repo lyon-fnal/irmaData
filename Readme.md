@@ -2,7 +2,7 @@
 
 Adam Lyon (September 2020)
 
-Get data for IRMA analysis into HDF5
+Get data for IRMA analysis into HDF5 and analyze at an HPC facility. 
 
 - [irmaData](#irmadata)
 	- [1 Introduction](#1-introduction)
@@ -119,3 +119,7 @@ Log into the SL7 node. It needs to have CVMFS installed. `cd` to your developmen
 
 Simply clone the repository the normal way.  Before you source the `setup.sh` script, you will need to set the `WORKSPACE_FOLDER` environment variable to the path to the top directory in the repository. 
 Then you can set up the environment with source `setup.sh`, build with `studio build` and run.
+
+## 3 Status
+
+I ran over era 2E (20K files).
