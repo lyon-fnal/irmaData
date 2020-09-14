@@ -7,7 +7,7 @@
 		"CVMFS_EXP": "gm2.opensciencegrid.org",
 		"DISPLAY": "docker.for.mac.localhost:0",
 		"USER": "${localEnv:USER}",
-		"WORKSPACE_FOLDER": "${containerWorkspaceFolder}",
+		"WORKSPACE_FOLDER_IRMADATA": "${containerWorkspaceFolder}",
 		"PATH":"/opt/rh/llvm-toolset-7.0/root/usr/bin:/opt/rh/llvm-toolset-7.0/root/usr/sbin:/opt/rh/rh-python36/root/usr/bin:${containerEnv:PATH}",
 		"LD_LIBRARY_PATH":"/opt/rh/llvm-toolset-7.0/root/usr/lib64:/opt/rh/rh-python36/root/usr/lib64:${containerEnv:LD_LIBRARY_PATH}",
 		"MANPATH":"/opt/rh/llvm-toolset-7.0/root/usr/share/man:/opt/rh/rh-python36/root/usr/share/man:${containerEnv:MANPATH}",

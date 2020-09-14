@@ -96,7 +96,7 @@ If you want to use VSCode, then do the following...
 ```json
 "workspaceFolder": "/Users/lyon/Development/gm2/irmaData",
 	"remoteEnv": {
-		"WORKSPACE_FOLDER":"/Users/lyon/Development/gm2/irmaData",
+		"WORKSPACE_FOLDER_IRMADATA":"/Users/lyon/Development/gm2/irmaData",
 		"USER":"lyon"
 	},
 	"extensions": [
