@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 source /cvmfs/gm2.opensciencegrid.org/prod/g-2/setup
-export PRODUCTS=/cvmfs/gm2.opensciencegrid.org/specials/sl7/prod/g-2:/cvmfs/gm2.opensciencegrid.org/specials/sl7/prod/external:$PRODUCTS  # Should go away 
 setup gm2 v9_52_00 -q prof
-setup cmake v3_17_1
+setup cmake v3_10_1
 setup hep_hpc v0_13_01 -q e15
 setup gdb
 setup studio
