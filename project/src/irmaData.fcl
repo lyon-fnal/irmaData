@@ -40,6 +40,8 @@ physics: {
       module_type: "irmaData"
       readModule: energyPartition
       readInstance: partition
+      fc7Module: cccUnpacker
+      fc7Instance: unpacker
       fileName: "irmaData.h5"
       SelectEvents: ["caloReco:muonPathWithDQC"]
     }
