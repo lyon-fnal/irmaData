@@ -9,7 +9,7 @@ mkdir tar ; cd tar
 mkdir lib ; mkdir fcl
 cp ../../project/build/lib/* lib/
 cp ../../project/src/irmaData.fcl fcl/
-tar cvzf ../irmaData.fcl lib/ fcl/
+tar cvzf ../irmaData.tgz lib/ fcl/
 cd ..
 ```
 
