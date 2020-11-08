@@ -20,5 +20,5 @@ Be sure the output file is ready (it is set in `runGridJob.sh`).
 ## Checking on the jobs
 
 ```bash
-jobsub -q --user <USER>
+jobsub_q --user <USER>
 ```
