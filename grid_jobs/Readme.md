@@ -22,3 +22,7 @@ Be sure the output file is ready (it is set in `runGridJob.sh`).
 ```bash
 jobsub_q --user <USER>
 ```
+
+Datasets are at https://cdcvs.fnal.gov/redmine/projects/g-2/wiki/Production_Run2_Data#Offline-Production-Datasets-With-Subrun-DQC
+
+SAM Station monitoring is at https://samweb.fnal.gov:8483/station_monitor/gm2/stations/gm2/projects
