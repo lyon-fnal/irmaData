@@ -42,11 +42,13 @@ SAM_PROCESS_ID=$(ifdh establishProcess ${SAM_PROJECT_URL} gm2 v9_52_00 $HOST lyo
 # Run it!
 gm2 -c $D/fcl/irmaData.fcl --sam-web-uri=${SAM_PROJECT_URL} --sam-process-id=${SAM_PROCESS_ID}
 
+echo $ERA >> irmaData.log
+
 # Copy the output back
-OUT=/pnfs/GM2/scratch/users/lyon/irmaData
+OUT=/pnfs/GM2/scratch/users/lyon/irmaData2/$ERA
 
-mv irmaData.h5 irmaData_${CLUSTER}_${PROCESS}.h5
-ifdh cp -D irmaData_${CLUSTER}_${PROCESS}.h5 ${OUT}
+mv irmaData.h5 irmaData_${CLUSTER}_${PROCESS}_${ERA}.h5
+ifdh cp -D irmaData_${CLUSTER}_${PROCESS}_${ERA}.h5 ${OUT}
 
-mv irmaData.log irmaData_${CLUSTER}_${PROCESS}.log
-ifdh cp -D irmaData_${CLUSTER}_${PROCESS}.log ${OUT}
+mv irmaData.log irmaData_${CLUSTER}_${PROCESS}_${ERA}.log
+ifdh cp -D irmaData_${CLUSTER}_${PROCESS}_${ERA}.log ${OUT}
